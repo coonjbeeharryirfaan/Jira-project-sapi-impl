@@ -12,7 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<app.name>jira-project-sapi-1.0.0</app.name>
+		<app.name>jira-project-sapi</app.name>
 		<app.runtime>4.6.1</app.runtime>
 		<mule.maven.plugin.version>4.1.0</mule.maven.plugin.version>
 	</properties>
@@ -30,24 +30,29 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-                   		 <cloudHub2Deployment>
-	                   		<uri>https://anypoint.mulesoft.com</uri>
-	                   		<provider>MC</provider>
-							<muleVersion>${app.runtime}</muleVersion>
-	                        <applicationName>${app.name}</applicationName>
-	                        <environment>PREPROD</environment>
-	                        <replicas>1</replicas>
-    						<vCores>0.1</vCores>
-    						<target>Cloudhub-US-East-2</target>
-    						<integrations>
-								<services>
-									<objectStoreV2>
-										<enabled>true</enabled>
-									</objectStoreV2>
-								</services>
-							</integrations>	
-                    </cloudHub2Deployment>
-         			 <classifier>mule-application</classifier>
+					<cloudHub2Deployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<provider>MC</provider>
+						<muleVersion>${app.runtime}</muleVersion>
+						<applicationName>${app.name}</applicationName>
+						<environment>PREPROD</environment>
+						<replicas>1</replicas>
+						<vCores>0.1</vCores>
+						<target>Cloudhub-US-East-2</target>
+						<integrations>
+							<services>
+								<objectStoreV2>
+									<enabled>true</enabled>
+								</objectStoreV2>
+							</services>
+						</integrations>
+						<deploymentSettings>
+							<lastMileSecurity>false</lastMileSecurity>
+							<forwardSslSession>false</forwardSslSession>
+							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+						</deploymentSettings>
+					</cloudHub2Deployment>
+					<classifier>---- select project type ----</classifier>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -108,13 +113,13 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-  <distributionManagement>
-    <repository>
-      <id>Repository</id>
-      <name>Corporate Repository</name>
-      <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
-      <layout>default</layout>
-    </repository>
-  </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>Repository</id>
+			<name>Corporate Repository</name>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
 
 </project>
