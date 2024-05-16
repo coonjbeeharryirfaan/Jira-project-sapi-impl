@@ -68,5 +68,3 @@ jobs:
          -Danypoint.password="$PASSWORD" \
          -Danypoint.platform.client_id="$CLIENTID" \
          -Danypoint.platform.client_secret="$CLIENTSECRET" \
-         -DskipTests \
-         -DskipDeploymentVerification="true"
