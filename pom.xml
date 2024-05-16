@@ -12,7 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
+		<app.name>jira-project-sapi</app.name>
 		<app.runtime>4.6.1</app.runtime>
 		<mule.maven.plugin.version>4.1.0</mule.maven.plugin.version>
 	</properties>
@@ -30,7 +30,19 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<classifier>---- select project type ----</classifier>
+               		 <cloudHubDeployments>
+                   		 <cloudHubDeployment>
+	                   		<uri>https://anypoint.mulesoft.com</uri>
+							<muleVersion>${app.runtime}</muleVersion>
+	                        <applicationName>${app.name}</applicationName>
+	                        <environment>PREPROD</environment>
+	                        <workerType>MICRO</workerType>
+							<region>us-east-2</region>
+							<workers>1</workers>
+							<objectStoreV2>true</objectStoreV2>
+                    </cloudHubDeployment>
+                </cloudHubDeployments>
+         			 <classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
 		</plugins>
