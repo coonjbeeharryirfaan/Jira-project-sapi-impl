@@ -52,10 +52,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - uses: actions/download-artifact@v3
-      with:
-        name: artifacts
+      with: 
+          name: artifacts
 
-     - name: Publish to Exchange
+    - name: Publish to Exchange
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests \
           --settings .maven/settings.xml \
