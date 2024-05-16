@@ -45,12 +45,7 @@
 										<enabled>true</enabled>
 									</objectStoreV2>
 								</services>
-							</integrations>
-							<deploymentSettings>
-								<lastMileSecurity>false</lastMileSecurity>
-								<forwardSslSession>false</forwardSslSession>
-								<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-							</deploymentSettings>	
+							</integrations>	
                     </cloudHub2Deployment>
          			 <classifier>mule-application</classifier>
 				</configuration>
