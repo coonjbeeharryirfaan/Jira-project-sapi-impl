@@ -66,6 +66,4 @@ jobs:
          -Dmule.artifact=$artifactName \
          -Danypoint.platform.client_id="$CLIENTID" \
          -Danypoint.platform.client_secret="$CLIENTSECRET" \
-         -Danypoint.platform.client_secret="$CLIENTSECRET" \
-         -DskipTests \
-         -DskipDeploymentVerification="true"
+         -Danypoint.platform.client_secret="$CLIENTSECRET" 
