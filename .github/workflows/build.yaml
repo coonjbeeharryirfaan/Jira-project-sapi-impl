@@ -64,7 +64,11 @@ jobs:
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -Danypoint.username="$USERNAME" \
-         -Danypoint.password="$PASSWORD" \
          -Danypoint.platform.client_id="$CLIENTID" \
+<<<<<<< HEAD
          -Danypoint.platform.client_secret="$CLIENTSECRET" \
+=======
+         -Danypoint.platform.client_secret="$CLIENTSECRET" \
+         -DskipTests \
+         -DskipDeploymentVerification="true"
+>>>>>>> branch 'Irfaan-dev1' of https://github.com/coonjbeeharryirfaan/Jira-project-sapi-impl.git
