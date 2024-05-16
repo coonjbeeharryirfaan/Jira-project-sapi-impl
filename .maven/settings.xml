@@ -1,9 +1,9 @@
 <settings>
     <servers>
             <server>
-            <id>anypoint-exchange-v3</id>
+            <id>Repository</id>
             <username>~~~Client~~~</username>
-            <password>${9ff57aef2d8346c0928c50e034826f71}~?~${3aC7d570C3004a859827D25506761F07}</password>
+            <password>${a60d69960c71444bb70694b59240a77b}~?~${DDB9062d98324eD18E8A9B8ddC01B770}</password>
         </server>
     </servers>
 </settings>
