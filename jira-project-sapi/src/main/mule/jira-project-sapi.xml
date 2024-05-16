@@ -139,6 +139,6 @@ output application/json
                 <ee:set-variable variableName="id"><![CDATA[attributes.uriParams.'id']]></ee:set-variable>
             </ee:variables>
         </ee:transform>
-        <logger level="INFO" message="get:\projects\(id):jira-project-sapi-config" />
+		<logger level="INFO" message="get:\projects\(id):jira-project-sapi-config" />
     </flow>
 </mule>
