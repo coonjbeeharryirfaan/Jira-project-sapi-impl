@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
-	<artifactId>jira-project-sapi</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
+	<artifactId>jira-project-sapi-1.0.0</artifactId>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>jira-project-sapi</name>
@@ -12,7 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
+		<app.name>jira-project-sapi</app.name>
 		<app.runtime>4.6.1</app.runtime>
 		<mule.maven.plugin.version>4.1.0</mule.maven.plugin.version>
 	</properties>
@@ -29,6 +29,26 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+                   		 <cloudHub2Deployment>
+	                   		<uri>https://anypoint.mulesoft.com</uri>
+	                   		<provider>MC</provider>
+							<muleVersion>${app.runtime}</muleVersion>
+	                        <applicationName>${app.name}</applicationName>
+	                        <environment>PREPROD</environment>
+	                        <replicas>1</replicas>
+    						<vCores>0.1</vCores>
+    						<target>Cloudhub-US-East-2</target>
+    						<integrations>
+								<services>
+									<objectStoreV2>
+										<enabled>true</enabled>
+									</objectStoreV2>
+								</services>
+							</integrations>	
+                    </cloudHub2Deployment>
+         			 <classifier>mule-application</classifier>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -87,5 +107,14 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>Repository</id>
+      <name>Corporate Repository</name>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+      <layout>default</layout>
+    </repository>
+  </distributionManagement>
 
 </project>
