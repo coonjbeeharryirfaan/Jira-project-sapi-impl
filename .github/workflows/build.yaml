@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout this repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -22,7 +22,7 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Set up JDK 1.8
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: 8
@@ -38,7 +38,7 @@ jobs:
         mv $artifactName1 $artifactName2
 
     - name: Upload artifact 
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
           name: artifacts
           path: target/*.jar
@@ -48,16 +48,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:    
     - name: Checkout this repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with: 
           name: artifacts
 
@@ -66,11 +66,10 @@ jobs:
       run: | 
         artifactName=$(ls *.jar | head -1)
         mvn deploy --settings .maven/settings.xml -DskipMunitTests \
-        -Dmule.artifact=$artifactName \
         -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID }}" \
         -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET }}" 
 
-    - name: Deploy to Cloudhub 2.0 - ENV Sandbox
+    - name: Deploy to Cloudhub 2.0
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
