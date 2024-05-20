@@ -4,7 +4,7 @@
 
 	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
 	<artifactId>jira-project-sapi-1.0.0</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>mule-application</packaging>
 
 	<name>jira-project-sapi</name>
