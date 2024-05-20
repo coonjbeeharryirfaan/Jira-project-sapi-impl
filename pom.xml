@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
-	<version>1.0.6</version>  <!-- this has to change EVERY TIME you want to re-deploy -->
+	<version>1.0.7</version>  <!-- this has to change EVERY TIME you want to re-deploy -->
 	<artifactId>jira-project-sapi-${project.version}</artifactId>
 	<name>${project.artifactId}</name>
 	<packaging>mule-application</packaging>
@@ -20,7 +20,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-			    <version>${mule.maven.plugin.version}</version>
+				<version>3.2.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
