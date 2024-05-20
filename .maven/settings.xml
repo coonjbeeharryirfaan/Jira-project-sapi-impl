@@ -3,12 +3,12 @@
             <server>
             <id>Repository</id>
             <username>~~~Client~~~</username>
-            <password>${a60d69960c71444bb70694b59240a77b}~?~${DDB9062d98324eD18E8A9B8ddC01B770}</password>
-        </server>
+ <password>${client.id}~?~${client.secret}</password>
+         </server>
           <server>
             <id>anypoint-exchange-v3</id>
             <username>~~~Client~~~</username>
-            <password>${a60d69960c71444bb70694b59240a77b}~?~${DDB9062d98324eD18E8A9B8ddC01B770}</password>
-        </server>
+ <password>${client.id}~?~${client.secret}</password>
+         </server>
     </servers>
 </settings>
