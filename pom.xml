@@ -46,7 +46,9 @@
 							</services>
 						</integrations>
 						<deploymentSettings>
-							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+							 	<lastMileSecurity>false</lastMileSecurity>
+								<forwardSslSession>false</forwardSslSession>
+								<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 						</deploymentSettings>
 					</cloudHub2Deployment>
 				       <classifier>mule-application</classifier>

@@ -65,13 +65,13 @@ jobs:
     - name: Publish to Exchange
       run: | 
         artifactName=$(ls *.jar | head -1)
-        mvn deploy --settings .maven/settings.xml -DskipMunitTests \
+        mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
         -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID }}" \
         -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET }}" 
 
     - name: Deploy to Cloudhub 2.0
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
+        mvn clean deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
           -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET }}" 
