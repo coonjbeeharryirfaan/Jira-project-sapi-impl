@@ -1,14 +1,20 @@
 <settings>
+
+  <pluginGroups>
+    <pluginGroup>org.mule.tools</pluginGroup>
+  </pluginGroups>
+
     <servers>
-            <server>
+        <server>
             <id>Repository</id>
             <username>~~~Client~~~</username>
- <password>${client.id}~?~${client.secret}</password>
-         </server>
-          <server>
+            <password>${client.id}~?~${client.secret}</password>
+        </server>
+        <server>
             <id>anypoint-exchange-v3</id>
             <username>~~~Client~~~</username>
- <password>${client.id}~?~${client.secret}</password>
-         </server>
+            <password>${client.id}~?~${client.secret}</password>
+        </server>
     </servers>
+    
 </settings>
