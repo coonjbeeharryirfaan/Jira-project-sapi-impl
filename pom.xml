@@ -28,18 +28,20 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<deployment>
 						<classifier>mule-application</classifier>
 						<cloudHub2Deployment>
 								<uri>https://anypoint.mulesoft.com</uri>
 								<provider>MC</provider>
-								<muleVersion>${app.runtime}</muleVersion>
 								<applicationName>${project.artifactId}</applicationName>
 								<server>Repository</server>
 								<environment>PREPROD</environment>
+									<releaseChannel>EDGE</releaseChannel>
 								<replicas>1</replicas>
 								<vCores>0.1</vCores>
 								<target>Cloudhub-US-East-2</target>
+								<deploymentSettings>
+                          			<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+                       			</deploymentSettings>
 								<integrations>
 									<services>
 										<objectStoreV2>
@@ -48,7 +50,6 @@
 									</services>
 								</integrations>
 						</cloudHub2Deployment>
-					</deployment>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -109,12 +110,12 @@
 	</pluginRepositories>
 
 	<distributionManagement>
-		<repository>
+	<repository>
 			<id>Repository</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
-		</repository>
+	</repository>
 	</distributionManagement>
 
 </project>
