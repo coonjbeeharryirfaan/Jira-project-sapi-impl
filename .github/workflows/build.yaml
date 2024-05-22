@@ -78,7 +78,7 @@ jobs:
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
-          -Danypoint.client_id="$UAT_CLIENT_ID" \
-          -Danypoint.client_secret="$UAT_CLIENT_SECRET" \
+          -Danypoint.client_id="$ANYPOINT_CONNECTED_APP_ID" \
+          -Danypoint.client_secret="$ANYPOINT_CONNECTED_APP_SECRET" \
           -Dconnectedapp.id="$ANYPOINT_CONNECTED_APP_ID" \
-          -Dconnectedapp.secret="$ANYPOINT_CONNECTED_APP_SECRET" -X
+          -Dconnectedapp.secret="$ANYPOINT_CONNECTED_APP_SECRET" 
