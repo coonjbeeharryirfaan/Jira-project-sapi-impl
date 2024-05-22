@@ -24,8 +24,8 @@ jobs:
       VCORES: ${{ vars.VCORES }}
       ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
       ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
-      ANYPOINT_ENV_CLIENT_ID:  ${{ ANYPOINT_ENV_CLIENT_ID }}
-      ANYPOINT_ENV_CLIENT_SECRET:  ${{ ANYPOINT_ENV_CLIENT_SECRET }}
+      ANYPOINT_ENV_CLIENT_ID:  ${{ secrets.ANYPOINT_ENV_CLIENT_ID }}
+      ANYPOINT_ENV_CLIENT_SECRET:  ${{ secrets.ANYPOINT_ENV_CLIENT_SECRET }}
     steps:
       - name: Print environment variables
         run: |
@@ -95,8 +95,8 @@ jobs:
       VCORES: ${{ vars.VCORES }}
       ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
       ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
-      ANYPOINT_ENV_CLIENT_ID:  ${{ANYPOINT_ENV_CLIENT_ID}}
-      ANYPOINT_ENV_CLIENT_SECRET:  ${{ANYPOINT_ENV_CLIENT_SECRET}}
+      ANYPOINT_ENV_CLIENT_ID:  ${{ secrets.ANYPOINT_ENV_CLIENT_ID }}
+      ANYPOINT_ENV_CLIENT_SECRET:  ${{ secrets.ANYPOINT_ENV_CLIENT_SECRET }}
     steps:    
     - name: Checkout this repo
       uses: actions/checkout@v4
