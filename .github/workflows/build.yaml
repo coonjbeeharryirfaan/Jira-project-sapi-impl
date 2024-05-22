@@ -11,27 +11,35 @@ jobs:
     runs-on: ubuntu-latest
     environment: PREPROD
     env:
+      CLUSTERED: ${{ vars.CLUSTERED }}
       DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
+      ENFORCEDEPLOYINGREPLICASACROSSNO: ${{ vars.ENFORCEDEPLOYINGREPLICASACROSSNO }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      GENERATEDEFAULTPUBLICURL: ${{ vars.GENERATEDEFAULTPUBLICURL }}
       MULEVERSION: ${{ vars.MULEVERSION }}
       RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
       REPLICAS: ${{ vars.REPLICAS }}
       TARGET: ${{ vars.TARGET }}
+      UPDATESTRATEGY: ${{ vars.UPDATESTRATEGY }}
       VCORES: ${{ vars.VCORES }}
       ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
       ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
     steps:
       - name: Print environment variables
         run: |
-            echo "DEPLOYMENTTIMEOUT is $DEPLOYMENTTIMEOUT"
-            echo "ENVIRONMENT is $ENVIRONMENT"
-            echo "MULEVERSION is $MULEVERSION"
-            echo "RELEASECHANNEL is $RELEASECHANNEL"
-            echo "REPLICAS is $REPLICAS"
-            echo "TARGET is $TARGET"
-            echo "VCORES is $VCORES"
-            echo "ANYPOINT_CONNECTED_APP_ID is $ANYPOINT_CONNECTED_APP_ID"
-            echo "ANYPOINT_CONNECTED_APP_SECRET is $ANYPOINT_CONNECTED_APP_SECRET"
+          echo "CLUSTERED is $CLUSTERED"
+          echo "DEPLOYMENTTIMEOUT is $DEPLOYMENTTIMEOUT"
+          echo "ENFORCEDEPLOYINGREPLICASACROSSNODES is $ENFORCEDEPLOYINGREPLICASACROSSNODES"
+          echo "ENVIRONMENT is $ENVIRONMENT"
+          echo "GENERATEDEFAULTPUBLICURL is $GENERATEDEFAULTPUBLICURL"
+          echo "MULEVERSION is $MULEVERSION"
+          echo "RELEASECHANNEL is $RELEASECHANNEL"
+          echo "REPLICAS is $REPLICAS"
+          echo "TARGET is $TARGET"
+          echo "UPDATESTRATEGY is $UPDATESTRATEGY"
+          echo "VCORES is $VCORES"
+          echo "ANYPOINT_CONNECTED_APP_ID is $ANYPOINT_CONNECTED_APP_ID"
+          echo "ANYPOINT_CONNECTED_APP_SECRET is $ANYPOINT_CONNECTED_APP_SECRET"
 
       - name: Checkout this repo
         uses: actions/checkout@v4
@@ -70,12 +78,16 @@ jobs:
     runs-on: ubuntu-latest
     environment: PREPROD
     env:
+      CLUSTERED: ${{ vars.CLUSTERED }}
       DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
+      ENFORCEDEPLOYINGREPLICASACROSSNODES: ${{ vars.ENFORCEDEPLOYINGREPLICASACROSSNODES }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      GENERATEDEFAULTPUBLICURL: ${{ vars.GENERATEDEFAULTPUBLICURL }}
       MULEVERSION: ${{ vars.MULEVERSION }}
       RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
       REPLICAS: ${{ vars.REPLICAS }}
       TARGET: ${{ vars.TARGET }}
+      UPDATESTRATEGY: ${{ vars.UPDATESTRATEGY }}
       VCORES: ${{ vars.VCORES }}
       ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
       ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
@@ -113,5 +125,10 @@ jobs:
            -DreleaseChannel="$RELEASECHANNEL" \
            -Dreplicas="$REPLICAS" \
            -Dtarget="$TARGET" \
-           -DvCores="$VCORES"
+           -DvCores="$VCORES" \
+           -DupdateStrategy="$UPDATESTRATEGY" \
+           -Dclustered="$CLUSTERED" \
+           -DenforceDeployingReplicasAcrossNodes="$ENFORCEDEPLOYINGREPLICASACROSSNODES" \
+           -DgenerateDefaultPublicUrl="$GENERATEDEFAULTPUBLICURL"
+       
       timeout-minutes: 30
