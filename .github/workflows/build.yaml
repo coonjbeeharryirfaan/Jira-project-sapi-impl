@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ Irfaan-dev1 ]
 
-environment: preprod
+environment: PREPROD
 env:
     DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
     ENVIRONMENT: ${{ vars.ENVIRONMENT }}
@@ -60,7 +60,7 @@ jobs:
           commitHash=$(git rev-parse --short "$GITHUB_SHA")
           artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/-$commitHash.jar/g")
           mv $artifactName1 $artifactName2
-          
+
       - name: Upload artifact 
         uses: actions/upload-artifact@v4
         with:
@@ -72,6 +72,7 @@ jobs:
     steps:    
     - name: Checkout this repo
       uses: actions/checkout@v4
+
     - name: Cache dependencies
       uses: actions/cache@v4
       with:
@@ -82,6 +83,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with: 
           name: artifacts    
+
     - name: Publishing to Exchange
       env:  ${{ env.ENVIRONMENT }}
       run: | 
@@ -89,6 +91,7 @@ jobs:
         mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
         -Dclient.id="$ANYPOINT_CONNECTED_APP_ID" \
         -Dclient.secret="$ANYPOINT_CONNECTED_APP_SECRET"
+        
     - name: Maven Deploy to Cloudhub 2.0
       run: |
         artifactName=$(ls *.jar | head -1)
