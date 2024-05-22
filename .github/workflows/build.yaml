@@ -95,7 +95,7 @@ jobs:
           name: artifacts    
 
     - name: Publishing to Exchange
-      env:  ${{ env.ENVIRONMENT }}
+      env: 
       run: | 
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
