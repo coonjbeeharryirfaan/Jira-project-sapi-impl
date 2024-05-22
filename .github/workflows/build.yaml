@@ -71,12 +71,12 @@ jobs:
 
     - name: Deploy to Cloudhub 2.0
       env:
-        USERNAME: ${{ secrets.ANYPOINT_UAT_CLIENT_ID }}
-        PASSWORD: ${{ secrets.ANYPOINT_UAT_CLIENT_SECRET }}
+        UAT_CLIENT_ID: ${{ secrets.ANYPOINT_UAT_CLIENT_ID }}
+        UAT_CLIENT_SECRET: ${{ secrets.ANYPOINT_UAT_CLIENT_SECRET }}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
-          -Danypoint.client_id="$USERNAME" \
-          -Danypoint.client_secret="$PASSWORD" \
+          -Danypoint.client_id="$UAT_CLIENT_ID" \
+          -Danypoint.client_secret="$UAT_CLIENT_SECRET" \
           -Dconnectedapp.id="${{ secrets.ANYPOINT_CONNECTED_APP_ID }}" \
-          -Dconnectedapp.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}" -X
+          -Dconnectedapp.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}"
