@@ -6,21 +6,20 @@ on:
   pull_request:
     branches: [ Irfaan-dev1 ]
 
-environment: PREPROD
-env:
-    DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
-    ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-    MULEVERSION: ${{ vars.MULEVERSION }}
-    RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
-    REPLICAS: ${{ vars.REPLICAS }}
-    TARGET: ${{ vars.TARGET }}
-    VCORES: ${{ vars.VCORES }}
-    ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
-    ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
-
 jobs:
+  environment: PREPROD
   build:
     runs-on: ubuntu-latest
+    env:
+      DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      MULEVERSION: ${{ vars.MULEVERSION }}
+      RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
+      REPLICAS: ${{ vars.REPLICAS }}
+      TARGET: ${{ vars.TARGET }}
+      VCORES: ${{ vars.VCORES }}
+      ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
+      ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
     steps:
       - name: Print environment variables
         run: |
@@ -69,6 +68,17 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment: PREPROD
+    env:
+      DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      MULEVERSION: ${{ vars.MULEVERSION }}
+      RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
+      REPLICAS: ${{ vars.REPLICAS }}
+      TARGET: ${{ vars.TARGET }}
+      VCORES: ${{ vars.VCORES }}
+      ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
+      ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
     steps:    
     - name: Checkout this repo
       uses: actions/checkout@v4
@@ -91,7 +101,7 @@ jobs:
         mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
         -Dclient.id="$ANYPOINT_CONNECTED_APP_ID" \
         -Dclient.secret="$ANYPOINT_CONNECTED_APP_SECRET"
-        
+
     - name: Maven Deploy to Cloudhub 2.0
       run: |
         artifactName=$(ls *.jar | head -1)
