@@ -7,7 +7,7 @@ on:
     branches: [ Irfaan-dev1 ]
 
 environment: preprod
-  env:
+env:
     DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
     ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     MULEVERSION: ${{ vars.MULEVERSION }}
@@ -87,7 +87,7 @@ jobs:
           name: artifacts
     
     - name: Publishing to Exchange
-      env: $ENVIRONMENT
+      env:  ${{ env.ENVIRONMENT }}
       run: | 
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
