@@ -67,7 +67,7 @@ jobs:
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
         -Dclient.id="${{ secrets.ANYPOINT_CONNECTED_APP_ID }}" \
-        -Dclient.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}" 
+        -Dclient.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}"  -X
 
     - name: Deploy to Cloudhub 2.0
       env:
