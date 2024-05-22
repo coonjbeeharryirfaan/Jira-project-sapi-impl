@@ -79,4 +79,4 @@ jobs:
           -Danypoint.client_id="$UAT_CLIENT_ID" \
           -Danypoint.client_secret="$UAT_CLIENT_SECRET" \
           -Dconnectedapp.id="${{ secrets.ANYPOINT_CONNECTED_APP_ID }}" \
-          -Dconnectedapp.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}"
+          -Dconnectedapp.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}" -X
