@@ -1,14 +1,39 @@
-name: Build and Deploy to Sandbox
+name: Build and Deploy - Mulesoft
 
 on:
   push:
     branches: [ Irfaan-dev1 ]
   pull_request:
     branches: [ Irfaan-dev1 ]
-    
+
+environment: preprod
+  env:
+    DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
+    ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    MULEVERSION: ${{ vars.MULEVERSION }}
+    RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
+    REPLICAS: ${{ vars.REPLICAS }}
+    TARGET: ${{ vars.TARGET }}
+    VCORES: ${{ vars.VCORES }}
+    ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
+    ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+    - name: Print environment variables
+      run: |
+          echo "DEPLOYMENTTIMEOUT is $DEPLOYMENTTIMEOUT"
+          echo "ENVIRONMENT is $ENVIRONMENT"
+          echo "MULEVERSION is $MULEVERSION"
+          echo "RELEASECHANNEL is $RELEASECHANNEL"
+          echo "REPLICAS is $REPLICAS"
+          echo "TARGET is $TARGET"
+          echo "VCORES is $VCORES"
+          echo "ANYPOINT_CONNECTED_APP_ID is $ANYPOINT_CONNECTED_APP_ID"
+          echo "ANYPOINT_CONNECTED_APP_SECRET is $ANYPOINT_CONNECTED_APP_SECRET"
+
     steps:
     - name: Checkout this repo
       uses: actions/checkout@v4
@@ -60,21 +85,26 @@ jobs:
     - uses: actions/download-artifact@v4
       with: 
           name: artifacts
-
     
-    - name: Publish to Exchange
+    - name: Publishing to Exchange
+      env: $ENVIRONMENT
       run: | 
         artifactName=$(ls *.jar | head -1)
-        mvn deploy --settings .maven/settings.xml -DskipMunitTests \
-        -Dclient.id="${{ secrets.ANYPOINT_CONNECTED_APP_ID }}" \
-        -Dclient.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}"
+        mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
+        -Dclient.id="$ANYPOINT_CONNECTED_APP_ID" \
+        -Dclient.secret="$ANYPOINT_CONNECTED_APP_SECRET"
 
-    - name: Deploy to Cloudhub 2.0
-      env:
-        ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
-        ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
+    - name: Maven Deploy to Cloudhub 2.0
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
-          -Dclient.id="$ANYPOINT_CONNECTED_APP_ID" \
-          -Dclient.secret="$ANYPOINT_CONNECTED_APP_SECRET" \
+        mvn clean deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
+           -Dclient.id="$ANYPOINT_CONNECTED_APP_ID" \
+           -Dclient.secret="$ANYPOINT_CONNECTED_APP_SECRET" \
+           -DdeploymentTimeout="$DEPLOYMENTTIMEOUT" \
+           -Denvironment="$ENVIRONMENT" \
+           -Dmule.version="$MULEVERSION" \
+           -DreleaseChannel="$RELEASECHANNEL" \
+           -Dreplicas="$REPLICAS" \
+           -Dtarget="$TARGET" \
+           -DvCores="$VCORES"
+      timeout-minutes: 30
