@@ -71,8 +71,6 @@ jobs:
 
     - name: Deploy to Cloudhub 2.0
       env:
-        UAT_CLIENT_ID: ${{ secrets.ANYPOINT_UAT_CLIENT_ID }}
-        UAT_CLIENT_SECRET: ${{ secrets.ANYPOINT_UAT_CLIENT_SECRET }}
         ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
         ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
       run: |

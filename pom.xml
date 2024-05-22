@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
-	<version>1.0.32</version>  <!-- this has to change EVERY TIME you want to re-deploy -->
+	<version>1.0.33</version>  <!-- this has to change EVERY TIME you want to re-deploy -->
 	<artifactId>jira-project-sapi-${project.version}</artifactId>
 	<name>jira-project-sapi</name>
 	<packaging>mule-application</packaging>
@@ -30,6 +30,7 @@
 				   <classifier>mule-application</classifier>
 					<cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
+						<deploymentTimeout>1200000</deploymentTimeout>
 						<provider>MC</provider>
 						<muleVersion>4.6.2</muleVersion>
 						<applicationName>${project.name}</applicationName>
