@@ -66,12 +66,17 @@ jobs:
       run: | 
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy --settings .maven/settings.xml -DskipMunitTests \
-        -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID }}" \
-        -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET }}" 
+        -Dclient.id="${{ secrets.ANYPOINT_CONNECTED_APP_ID }}" \
+        -Dclient.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}" 
 
     - name: Deploy to Cloudhub 2.0
+      env:
+        USERNAME: ${{ secrets.ANYPOINT_UAT_CLIENT_ID }}
+        PASSWORD: ${{ secrets.ANYPOINT_UAT_CLIENT_SECRET }}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
-          -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID }}" \
-          -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET }}" -X
+          -Danypoint.client_id="$USERNAME" \
+          -Danypoint.client_secret="$PASSWORD" \
+          -Dconnectedapp.id="${{ secrets.ANYPOINT_CONNECTED_APP_ID }}" \
+          -Dconnectedapp.secret="${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}" -X

@@ -33,14 +33,32 @@
 											<muleVersion>4.6.2</muleVersion>
 											<applicationName>${project.name}</applicationName>
 																<releaseChannel>EDGE</releaseChannel>
-											<server>Repository</server>
+											<connectedAppClientId>${connectedapp.id}</connectedAppClientId>
+											<connectedAppClientSecret>${connectedapp.secret}</connectedAppClientSecret>
+											<connectedAppGrantType>client_credentials</connectedAppGrantType>
 											<environment>PREPROD</environment>
 											<replicas>1</replicas>
 											<vCores>0.1</vCores>
 											<target>Cloudhub-US-East-2</target>
 											<deploymentSettings>
 												<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-											</deploymentSettings>									
+											</deploymentSettings>
+											<integrations>
+												<services>
+													<objectStoreV2>
+														<enabled>true</enabled>
+													</objectStoreV2>
+												</services>
+											</integrations>
+											<properties>
+												<app.env>PREPROD</app.env>
+												<app.version>${project.version}</app.version>
+												<anypoint.platform.base_uri>https://anypoint.mulesoft.com</anypoint.platform.base_uri>
+												<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+												<anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
+												<anypoint.platform.client_id>${anypoint.client_id}</anypoint.platform.client_id>
+												<anypoint.platform.client_secret>${anypoint.client_secret}</anypoint.platform.client_secret>
+											</properties>
 									</cloudHub2Deployment>
 							</configuration>
 					</plugin>
