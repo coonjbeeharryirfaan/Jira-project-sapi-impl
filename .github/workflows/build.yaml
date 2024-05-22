@@ -7,9 +7,9 @@ on:
     branches: [ Irfaan-dev1 ]
 
 jobs:
-  environment: PREPROD
   build:
     runs-on: ubuntu-latest
+    environment: PREPROD
     env:
       DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
