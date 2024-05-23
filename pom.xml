@@ -2,8 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
-	<version>1.0.60</version>
-	<!-- this has to change EVERY TIME you want to re-deploy -->
+	<version>1.0.61</version> <!-- this has to change EVERY TIME you want to re-deploy -->
 	<artifactId>jira-project-sapi-${project.version}</artifactId>
 	<name>jira-project-sapi</name>
 	<packaging>mule-application</packaging>
@@ -19,7 +18,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.2.0</version>
 			</plugin>
 
 			<plugin>
@@ -28,7 +27,7 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<classifier>---- select project type ----</classifier>
+					<classifier>${project.packaging}</classifier>
 					<cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<deploymentTimeout>${deploymentTimeout}</deploymentTimeout>
@@ -68,7 +67,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>jira-project-sapi</artifactId>
 			<version>1.0.1</version>
 			<classifier>raml</classifier>
@@ -110,7 +109,7 @@
 		<repository>
 			<id>Repository</id>
 			<name>Corporate Repository</name>
-			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/0c5895ef-a670-4eee-92d5-1ab8b670915d/maven</url>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>
@@ -131,7 +130,7 @@
 		<repository>
 			<id>Repository</id>
 			<name>Corporate Repository</name>
-			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/0c5895ef-a670-4eee-92d5-1ab8b670915d/maven</url>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
 		</repository>
 	</distributionManagement>
