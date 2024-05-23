@@ -7,7 +7,7 @@ on:
     branches: [ Irfaan-dev1 ]
 
 env:
-    ENVIRONMENT: PROD
+    env_var: PROD
     CLUSTERED: ${{ vars.CLUSTERED }}
     DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
     ENFORCEDEPLOYINGREPLICASACROSSNODES: ${{ vars.ENFORCEDEPLOYINGREPLICASACROSSNODES }}
@@ -26,7 +26,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: $ENVIRONMENT
+    environment: $env_var
 
     steps:
       - name: Print environment variables
@@ -82,7 +82,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: $ENVIRONMENT
+    environment: $env_var
     steps:    
     - name: Checkout this repo
       uses: actions/checkout@v4
