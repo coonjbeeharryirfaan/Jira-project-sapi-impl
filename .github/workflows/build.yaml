@@ -10,7 +10,7 @@ env:
     CLUSTERED: ${{ vars.CLUSTERED }}
     DEPLOYMENTTIMEOUT: ${{ vars.DEPLOYMENTTIMEOUT }}
     ENFORCEDEPLOYINGREPLICASACROSSNODES: ${{ vars.ENFORCEDEPLOYINGREPLICASACROSSNODES }}
-    ENVIRONMENT: ${{ENVIRONMENT}}
+    ENVIRONMENT: ${{vars.ENVIRONMENT}}
     GENERATEDEFAULTPUBLICURL: ${{ vars.GENERATEDEFAULTPUBLICURL }}
     MULEVERSION: ${{ vars.MULEVERSION }}
     RELEASECHANNEL: ${{ vars.RELEASECHANNEL }}
@@ -27,7 +27,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: PREPROD
-    
+
     steps:
       - name: Print environment variables
         run: |
