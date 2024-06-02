@@ -8,8 +8,9 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
     <apikit:config name="jira-project-sapi-config" api="resource::0c5895ef-a670-4eee-92d5-1ab8b670915d:jira-project-sapi:1.0.1:raml:zip:jira-project-sapi.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <api-gateway:autodiscovery apiId="19501241" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="904bbea9-e95c-4866-8f73-f1a07b9d9293" flowRef="jira-project-sapi-main" />
 	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="8fd015b2-d5f0-4aef-a91c-358cccdb4af3" >
-		<salesforce:basic-connection username="nivedita.jokhun@spoonconsulting.com.dev04" password="cn5P6hTdeL&amp;K$fhh" securityToken="HQsQf6qt3PjqijsKOQmlCIxi" url="https://test.salesforce.com/services/Soap/u/60.0" />
+		<salesforce:basic-connection username="nivedita.jokhun@spoonconsulting.com.dev04" password="cn5P6hTdeL&amp;K$fhh" securityToken="HQsQf6qt3PjqijsKOQmlCIxi" url="${sf-alu-dev.url}" />
 	</salesforce:sfdc-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="38da8160-c587-4018-a8f9-b21d29dc17e3" file="${environment}-properties.yaml" />
 	<flow name="jira-project-sapi-main">
         <http:listener config-ref="jira-project-sapi-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
