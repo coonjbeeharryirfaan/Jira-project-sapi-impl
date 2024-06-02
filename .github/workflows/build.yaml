@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Get Timestamp
-        run: echo "TIMESTAMP=1.0.$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+        run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
 
       - name: Set Timestamp
         run: echo "TIMESTAMP is ${{ env.TIMESTAMP }}"
@@ -70,9 +70,6 @@ jobs:
           distribution: 'zulu'
           java-version: 8
 
-      - name: Set Maven Version
-        run: mvn versions:set -Dmy.version=${{ env.TIMESTAMP }}
-
       - name: Build with Maven  
         run: mvn -Dmy.version=${{ env.TIMESTAMP }} -B package --file pom.xml 
 
@@ -93,13 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: PREPROD
 
-    steps:    
-    - name: Get Timestamp
-      run: echo "TIMESTAMP=1.0.$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
-
-    - name: Set Timestamp
-      run: echo "TIMESTAMP is ${{ env.TIMESTAMP }}"
-    
+    steps:     
     - name: Checkout this repo
       uses: actions/checkout@v4
 
