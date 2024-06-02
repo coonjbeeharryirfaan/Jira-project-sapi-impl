@@ -70,8 +70,10 @@ jobs:
           distribution: 'zulu'
           java-version: 8
 
-      - name: Build with Maven
+      - name: Set Maven Version
         run: mvn versions:set -Dpom.version=${{ env.TIMESTAMP }}
+
+      - name: Build with Maven  
         run: mvn -B package --file pom.xml 
 
       - name: Stamp artifact file name with commit hash
