@@ -94,7 +94,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: PREPROD
-
+    steps:
     - name: Checkout this repo
       uses: actions/checkout@v4
 
