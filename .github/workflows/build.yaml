@@ -115,7 +115,7 @@ jobs:
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn clean deploy -DmuleDeploy --settings .maven/settings.xml -DskipMunitTests \
-           -Dpom.version=${{ env.TIMESTAMP }}
+           -Dpom.version=${{ env.TIMESTAMP }} \
            -Dclient.id="$ANYPOINT_CONNECTED_APP_ID" \
            -Dclient.secret="$ANYPOINT_CONNECTED_APP_SECRET" \
            -DanypointEnvId="$ANYPOINT_ENV_CLIENT_ID" \
