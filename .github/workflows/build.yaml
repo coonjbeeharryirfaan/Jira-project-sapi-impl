@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Set Timestamp 
-         run: echo "TIMESTAMP1=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+        run: echo "TIMESTAMP1=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
 
       - name: Get Timestamp
         id: set_vars
