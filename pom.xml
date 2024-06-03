@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-		<modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
-	<version>1.0.80</version> <!-- this has to change EVERY TIME you want to re-deploy -->
+	<version>1.0.90</version> <!-- this has to change EVERY TIME you want to re-deploy -->
 	<artifactId>jira-project-sapi-${project.version}</artifactId>
 	<name>jira-project-sapi</name>
 	<packaging>mule-application</packaging>
@@ -14,6 +14,7 @@
 	</properties>
 
 	<build>
+    <pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -63,6 +64,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+        </pluginManagement>
 	</build>
 
 	<dependencies>
@@ -89,12 +91,6 @@
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-apikit-module</artifactId>
 			<version>1.10.3</version>
-			<classifier>mule-plugin</classifier>
-		</dependency>
-		<dependency>
-			<groupId>com.mulesoft.connectors</groupId>
-			<artifactId>mule-salesforce-connector</artifactId>
-			<version>10.20.0</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
