@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>0c5895ef-a670-4eee-92d5-1ab8b670915d</groupId>
 	<version>1.0.91</version> <!-- this has to change EVERY TIME you want to re-deploy -->
-	<artifactId>jira-project-sapi-${project.version}</artifactId>
+	<artifactId>jira-project-sapi-1.0.91</artifactId>
 	<name>jira-project-sapi</name>
 	<packaging>mule-application</packaging>
 
